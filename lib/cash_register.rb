@@ -1,5 +1,5 @@
 class CashRegister
-  attr_accessor :total, :discount, :item_price
+  attr_accessor :total, :discount, :last_item_price
   attr_reader :items
 
   def initialize(discount = 0)
@@ -10,7 +10,7 @@ class CashRegister
 
   def add_item(item, price, quantity = 1)
     @total += price * quantity
-    @item_price = price
+    @last_item_price = price
     quantity.times do @items << item end
     @items
   end
@@ -26,7 +26,7 @@ class CashRegister
   end
 
   def void_last_transaction
-    @total = @total - @item_price
+    @total = @total - @last_item_price
   end
 
 end
